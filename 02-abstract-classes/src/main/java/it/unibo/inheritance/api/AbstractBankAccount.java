@@ -1,8 +1,5 @@
 package it.unibo.inheritance.api;
 
-
-import it.unibo.inheritance.impl.SimpleBankAccount;
-
 abstract class AbstractBankAccount implements BankAccount {
 
     //variables
@@ -52,13 +49,9 @@ abstract class AbstractBankAccount implements BankAccount {
 
 
     //booleans
-    protected boolean isWithdrawAllowed(final double amount) {
-        return getBalance() > amount;
-    }
+    abstract protected boolean isWithdrawAllowed(final double amount);
 
-    protected boolean checkUser(final int id) {
-        return this.getAccountHolder().getUserID() == id;
-    }
+    abstract protected boolean checkUser(final int id);
 
 
     //methods
