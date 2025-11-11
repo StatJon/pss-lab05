@@ -3,6 +3,6 @@ plugins {
     application
 }
 
-application { // Configurazione dell'esecuzione, la main class è sufficiente
+application {
     mainClass.set("it.unibo.inheritance.test.TestBankAccount")
 }
