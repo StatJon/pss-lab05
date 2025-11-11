@@ -28,31 +28,26 @@ public class ExtendedStrictBankAccount extends SimpleBankAccount{
 
 
     //extended
+    @Override
     public void withdraw(final int id, final double amount) {
         if (this.isWithdrawAllowed(amount)) {
             this.transactionOp(id, -amount);
         }
     }
-    
 
-    /**
-    simple withdraw
-    public void withdraw(final int id, final double amount) {
 
-         * Incrementa il numero di transazioni e rimuove amount al totale del
-         * conto. Note: - Il conto puo' andare in rosso (ammontare negativo) -
-         * Il prelievo va a buon fine solo se l'id utente corrisponde
 
-        this.transactionOp(id, -amount);
-    }
-
-    //strict withdraw
-    public void withdraw(final int id, final double amount) {
-        if (isWithdrawAllowed(amount)) {
-            this.transactionOp(id, -amount);
+    //extended
+    @Override
+    public void chargeManagementFees(final int id) {
+        final double feeAmount = MANAGEMENT_FEE + transactions * TRANSACTION_FEE;
+        if (super.checkUser(id) && this.isWithdrawAllowed(feeAmount)) {
+            super.setBalance(getBalance()-feeAmount);
+            transactions = 0;
         }
     }
-     */
+
+
 
 
 
