@@ -12,19 +12,37 @@ public class ExtendedStrictBankAccount extends SimpleBankAccount{
         super(id, balance);
         this.transactions = 0;
     }
-    
+
     private boolean isWithdrawAllowed(final double amount) {
         return getBalance() >= amount;
     }
 
+    //extended
+    private void transactionOp(final int id, final double amount) {
+        if (checkUser(id)) {
+            super.setBalance(getBalance() + amount);
+            super.incrementTransactions();
+        }
+    }
 
-    //simple withdraw
+
+
+    //extended
     public void withdraw(final int id, final double amount) {
-        /*
+        if (this.isWithdrawAllowed(amount)) {
+            this.transactionOp(id, -amount);
+        }
+    }
+    
+
+    /**
+    simple withdraw
+    public void withdraw(final int id, final double amount) {
+
          * Incrementa il numero di transazioni e rimuove amount al totale del
          * conto. Note: - Il conto puo' andare in rosso (ammontare negativo) -
          * Il prelievo va a buon fine solo se l'id utente corrisponde
-         */
+
         this.transactionOp(id, -amount);
     }
 
@@ -34,24 +52,9 @@ public class ExtendedStrictBankAccount extends SimpleBankAccount{
             this.transactionOp(id, -amount);
         }
     }
+     */
 
 
-    //simple
-    private void transactionOp(final int id, final double amount) {
-        if (checkUser(id)) {
-            this.balance += amount;
-            this.incrementTransactions();
-        }
-    }
-
-
-    //strict
-    private void transactionOp(final int id, final double amount) {
-        if (checkUser(id)) {
-            this.balance += amount;
-            this.incrementTransactions();
-        }
-    }
 
 
 
